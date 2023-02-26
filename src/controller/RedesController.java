@@ -54,4 +54,32 @@ public class RedesController {
 				e.printStackTrace();
 			}
 		}
+		
+		// Verifica o Sistema Operacional e, de acordo com o S.O. e, faz a chamada de ping em IPv4 com 10 iterações.
+		public void ping() {
+			String process = (os().contains("Windows")) ? "ping -4 -n 10 www.google.com.br" : "ping -4 -c 10 www.google.com.br";
+			try {
+				Process p = Runtime.getRuntime().exec(process);
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String linha = buffer.readLine();
+				String ultLinha = "";
+				while (linha != null) {
+					ultLinha = linha;
+					linha = buffer.readLine();
+				}
+				buffer.close();
+				leitor.close();
+				fluxo.close();
+				if (os().contains("Windows")) {
+					System.out.println("\nMédia = " + ultLinha.split(" = ")[3]);
+				} else {
+					System.out.println("\nMédia = " + ultLinha.split("/")[4] + "ms");
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }
