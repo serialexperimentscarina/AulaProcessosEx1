@@ -55,7 +55,7 @@ public class RedesController {
 				fluxo.close();
 				JOptionPane.showMessageDialog(null, resultado);
 			} catch (Exception e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		
@@ -84,7 +84,7 @@ public class RedesController {
 					
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 }
